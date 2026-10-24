@@ -88,8 +88,8 @@
     <!-- Particle Background -->
     <canvas id="particles-canvas"></canvas>
 
-    <!-- Content Container -->
-    <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+    <!-- MAIN APP VIEW -->
+    <div id="app-view" class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
 
         <!-- Top Controls / Settings Bar -->
         <div class="flex justify-between items-center mb-6 glass-card p-4 rounded-xl gold-border">
@@ -159,7 +159,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Item 1 -->
                     <div class="glass-card rounded-2xl p-6 transition-all duration-300 relative group overflow-hidden">
                         <div class="absolute top-0 right-0 bg-gradient-to-l from-amber-500 to-amber-700 text-black text-[10px] font-bold px-4 py-1 rounded-bl-lg font-montserrat">
                             ROYAL VIP
@@ -183,7 +182,6 @@
                         </div>
                     </div>
 
-                    <!-- Item 2 -->
                     <div class="glass-card rounded-2xl p-6 transition-all duration-300 relative group overflow-hidden">
                         <div class="flex justify-between items-start mb-2">
                             <div>
@@ -311,7 +309,7 @@
             </div>
         </div>
 
-        <!-- SECTION 2: HOST CAST DIRECTORY (NO IMAGES) -->
+        <!-- SECTION 2: HOST CAST DIRECTORY -->
         <div id="section-cast" class="hidden space-y-8">
             <div class="text-center max-w-xl mx-auto mb-10">
                 <h2 class="text-2xl font-cinzel text-amber-300 tracking-wider">EXECUTIVE CAST MEMBERS</h2>
@@ -319,7 +317,6 @@
             </div>
 
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-                <!-- Host 1: 華東 玲王 -->
                 <div class="glass-card rounded-2xl p-5 text-center group hover:border-amber-400 transition-all flex flex-col items-center justify-center">
                     <span class="inline-block px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-bold border border-amber-500/30 mb-3">
                         PRODUCER / オーナー
@@ -328,7 +325,6 @@
                     <p class="text-[11px] text-gray-400 font-montserrat mt-1">未定</p>
                 </div>
 
-                <!-- Host 2: ヤドリ -->
                 <div class="glass-card rounded-2xl p-5 text-center group hover:border-amber-400 transition-all flex flex-col items-center justify-center">
                     <span class="inline-block px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-[10px] font-bold border border-purple-500/30 mb-3">
                         LEADER / リーダー
@@ -337,27 +333,24 @@
                     <p class="text-[11px] text-gray-400 font-montserrat mt-1">Yadori</p>
                 </div>
 
-                <!-- Host 3: にんじん -->
                 <div class="glass-card rounded-2xl p-5 text-center group hover:border-amber-400 transition-all flex flex-col items-center justify-center">
-                    <span class="inline-block px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold border border-emerald-500/30 mb-3">
+                    <span class="inline-block px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-[10px] font-bold border border-purple-500/30 mb-3">
                         HOST / ホスト
                     </span>
                     <h3 class="text-lg font-bold text-white tracking-wide">にんじん</h3>
                     <p class="text-[11px] text-gray-400 font-montserrat mt-1">Ninjin</p>
                 </div>
 
-                <!-- Host 4: NYO -->
                 <div class="glass-card rounded-2xl p-5 text-center group hover:border-amber-400 transition-all flex flex-col items-center justify-center">
-                    <span class="inline-block px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-bold border border-amber-500/30 mb-3">
+                    <span class="inline-block px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-[10px] font-bold border border-purple-500/30 mb-3">
                         HOST / ホスト
                     </span>
                     <h3 class="text-lg font-bold text-white tracking-wide">NYO</h3>
                     <p class="text-[11px] text-gray-400 font-montserrat mt-1">Nyo</p>
                 </div>
 
-                <!-- Host 5: ぽーらん -->
                 <div class="glass-card rounded-2xl p-5 text-center group hover:border-amber-400 transition-all flex flex-col items-center justify-center">
-                    <span class="inline-block px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-[10px] font-bold border border-blue-500/30 mb-3">
+                    <span class="inline-block px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-[10px] font-bold border border-purple-500/30 mb-3">
                         HOST / ホスト
                     </span>
                     <h3 class="text-lg font-bold text-white tracking-wide">寝起きのぽーらん</h3>
@@ -451,7 +444,7 @@
             </div>
 
             <div class="order-btn-container mt-3">
-                <button onclick="confirmOrder()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-700 text-black font-bold text-xs tracking-wider shadow-lg hover:brightness-110 transition-all">
+                <button onclick="handleOrderSubmit()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-700 text-black font-bold text-xs tracking-wider shadow-lg hover:brightness-110 transition-all">
                     CONFIRM ORDER / 注文を確定する
                 </button>
             </div>
@@ -465,9 +458,93 @@
 
     </div>
 
+    <!-- PAGE TRANSITION: NAME INPUT MODAL -->
+    <div id="name-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden">
+        <div class="glass-card p-6 sm:p-8 rounded-2xl max-w-md w-full border border-amber-500/40 shadow-2xl text-center space-y-6">
+            <div>
+                <i class="fa-solid fa-user-check text-amber-400 text-3xl mb-3"></i>
+                <h3 class="text-xl font-bold text-white tracking-wider">MEMBER REGISTRATION</h3>
+                <p class="text-xs text-gray-400 mt-1">お客様のお名前（お呼び名）を入力してください</p>
+                <p class="text-[10px] text-amber-400/80 mt-0.5">※この端末では1日1回のみ登録が可能です</p>
+            </div>
+
+            <input type="text" id="user-name-input" placeholder="例：姫様 / ゲスト" class="w-full px-4 py-3 rounded-xl bg-black/60 border border-amber-500/30 text-white text-center text-sm focus:outline-none focus:border-amber-400 transition-all">
+
+            <button onclick="saveNameAndProceed()" class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-700 text-black font-bold text-sm tracking-widest shadow-lg hover:brightness-110 transition-all">
+                確定して注文履歴を見る
+            </button>
+        </div>
+    </div>
+
+    <!-- PAGE TRANSITION: ORDER HISTORY PAGE -->
+    <div id="history-view" class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 hidden">
+        <div class="glass-card rounded-2xl p-6 sm:p-10 border border-amber-500/40 shadow-2xl space-y-8">
+            <div class="flex justify-between items-center border-b border-amber-500/20 pb-6">
+                <div>
+                    <span class="text-xs text-amber-400 font-montserrat uppercase tracking-widest">ORDER HISTORY / ご注文履歴</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1">
+                        WELCOME, <span id="display-user-name" class="gold-gradient-text">---</span> 様
+                    </h2>
+                </div>
+                <button onclick="returnToMenu()" class="px-4 py-2 rounded-lg bg-gray-800/80 hover:bg-gray-700 text-xs text-gray-300 border border-gray-600 transition-all">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> メニューへ戻る
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                <h3 class="text-sm font-bold text-amber-300 flex items-center space-x-2">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span>本日のオーダー伝票</span>
+                </h3>
+
+                <div id="history-list" class="space-y-2 text-xs sm:text-sm">
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-4 space-y-2 text-right">
+                <p class="text-xs text-gray-400">小計: <span id="history-subtotal" class="font-montserrat">¥0</span></p>
+                <p class="text-xs text-gray-400">税・サービス料 (45%): <span id="history-tax" class="font-montserrat">¥0</span></p>
+                <p class="text-lg font-bold text-amber-300 pt-2 border-t border-gray-800">
+                    ご請求合計金額: <span id="history-total" class="font-montserrat text-2xl gold-gradient-text">¥0</span>
+                </p>
+            </div>
+
+            <div class="bg-amber-500/10 rounded-xl p-4 border border-amber-500/20 text-center">
+                <p class="text-xs text-amber-300 font-bold">本日分のご注文を受け付けました。</p>
+                <p class="text-[11px] text-gray-400 mt-1">※この端末での登録は本日（24時間）有効です。明日になると自動リセットされます。</p>
+            </div>
+        </div>
+    </div>
+
     <!-- JavaScript Logic -->
     <script>
         let orderList = [];
+
+        // Get Today's Date String (YYYY-MM-DD)
+        function getTodayString() {
+            const now = new Date();
+            return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+        }
+
+        // Check LocalStorage Daily Reset on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            const today = getTodayString();
+            const lastSavedDate = localStorage.getItem('aura_order_date');
+
+            if (lastSavedDate !== today) {
+                // Different day: Reset daily entries
+                localStorage.removeItem('aura_user_name');
+                localStorage.removeItem('aura_order_history');
+                localStorage.removeItem('aura_order_date');
+            } else {
+                // Same day: If user name & history exist, show history page directly
+                const savedName = localStorage.getItem('aura_user_name');
+                const savedHistory = localStorage.getItem('aura_order_history');
+                if (savedName && savedHistory) {
+                    renderHistoryPage(savedName, JSON.parse(savedHistory));
+                }
+            }
+        });
 
         function switchTab(tabName) {
             document.getElementById('section-menu').classList.add('hidden');
@@ -556,15 +633,79 @@
             }
         }
 
-        function confirmOrder() {
+        function handleOrderSubmit() {
             if (orderList.length === 0) {
                 alert('メニューを選択してください。');
                 return;
             }
-            alert('ご注文ありがとうございます。担当キャスト・スタッフが伺います。');
-            orderList = [];
-            updateEstimatorUI();
-            toggleEstimatorModal();
+
+            const today = getTodayString();
+            const savedDate = localStorage.getItem('aura_order_date');
+            const savedName = localStorage.getItem('aura_user_name');
+
+            if (savedDate === today && savedName) {
+                // Today's entry already exists on this device -> Directly view/update
+                saveHistoryAndTransition(savedName);
+            } else {
+                // First time today -> Open Name Modal
+                document.getElementById('name-modal').classList.remove('hidden');
+            }
+        }
+
+        function saveNameAndProceed() {
+            const nameInput = document.getElementById('user-name-input').value.trim();
+            if (!nameInput) {
+                alert('お名前を入力してください。');
+                return;
+            }
+
+            const today = getTodayString();
+            localStorage.setItem('aura_user_name', nameInput);
+            localStorage.setItem('aura_order_date', today);
+
+            document.getElementById('name-modal').classList.add('hidden');
+            saveHistoryAndTransition(nameInput);
+        }
+
+        function saveHistoryAndTransition(userName) {
+            localStorage.setItem('aura_order_history', JSON.stringify(orderList));
+            renderHistoryPage(userName, orderList);
+        }
+
+        function renderHistoryPage(name, historyItems) {
+            document.getElementById('app-view').classList.add('hidden');
+            document.getElementById('estimator-panel').classList.add('hidden');
+            document.getElementById('cart-trigger').classList.add('hidden');
+            document.getElementById('history-view').classList.remove('hidden');
+
+            document.getElementById('display-user-name').innerText = name;
+
+            const listContainer = document.getElementById('history-list');
+            listContainer.innerHTML = '';
+
+            let subtotal = 0;
+            historyItems.forEach(item => {
+                subtotal += item.price;
+                listContainer.innerHTML += `
+                    <div class="flex justify-between items-center bg-black/40 p-3 rounded-xl border border-gray-800">
+                        <span class="font-bold text-gray-200">${item.name}</span>
+                        <span class="font-montserrat text-amber-400 font-bold">¥${item.price.toLocaleString()}</span>
+                    </div>
+                `;
+            });
+
+            const taxAndService = Math.round(subtotal * 0.45);
+            const total = subtotal + taxAndService;
+
+            document.getElementById('history-subtotal').innerText = `¥${subtotal.toLocaleString()}`;
+            document.getElementById('history-tax').innerText = `¥${taxAndService.toLocaleString()}`;
+            document.getElementById('history-total').innerText = `¥${total.toLocaleString()}`;
+        }
+
+        function returnToMenu() {
+            document.getElementById('history-view').classList.add('hidden');
+            document.getElementById('app-view').classList.remove('hidden');
+            document.getElementById('cart-trigger').classList.remove('hidden');
         }
 
         const canvas = document.getElementById('particles-canvas');
