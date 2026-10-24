@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CLUB AURA - Executive Lounge</title>
+    <title>Club Chrono - Kabukicho Executive Lounge</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Noto+Serif+JP:wght@300;400;600;900&family=Montserrat:wght@200;400;600;800&display=swap" rel="stylesheet">
@@ -93,11 +93,11 @@
                 <span class="text-xs uppercase tracking-[0.4em] text-amber-400 border-b border-amber-500/40 pb-1 font-montserrat">
                     Kabukicho Executive Club
                 </span>
-                <span class="block text-[10px] text-gray-400 tracking-widest mt-1">歌舞伎町 エグゼクティブ クラブ</span>
+                <span class="block text-[10px] text-gray-400 tracking-widest mt-1">東京都新宿区歌舞伎町1-8-19 ルミエールビル 5F</span>
             </div>
             
             <h1 class="text-4xl sm:text-6xl font-black font-cinzel tracking-wider gold-gradient-text my-2 drop-shadow-md">
-                CLUB AURA
+                Club Chrono
             </h1>
             <p class="text-xs sm:text-sm text-gray-400 tracking-widest font-light">
                 ROYAL VIP MENU & CAST DIRECTORY
@@ -109,19 +109,43 @@
             <div class="w-24 h-0.5 bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto mt-6"></div>
         </header>
 
+        <!-- Access & Store Info Bar -->
+        <div class="glass-card rounded-2xl p-6 mb-10 border border-amber-500/30 grid grid-cols-1 md:grid-cols-3 gap-6 text-xs sm:text-sm">
+            <div>
+                <p class="text-amber-400 font-bold mb-1 flex items-center space-x-2">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>ACCESS / 所在地</span>
+                </p>
+                <p class="text-gray-300 leading-relaxed">東京都新宿区歌舞伎町1-8-19<br>ルミエールビル 5F</p>
+                <p class="text-[11px] text-gray-400 mt-1">西武新宿駅 北口 徒歩1分 ／ 新宿駅 東口 徒歩5分</p>
+            </div>
+            <div>
+                <p class="text-amber-400 font-bold mb-1 flex items-center space-x-2">
+                    <i class="fa-solid fa-clock"></i>
+                    <span>OPEN / 営業時間</span>
+                </p>
+                <p class="text-gray-300">20:00 — LAST 1:00</p>
+                <p class="text-[11px] text-gray-400 mt-1">定休日: 不定休 / TEL: 03-0000-0000</p>
+            </div>
+            <div>
+                <p class="text-amber-400 font-bold mb-1 flex items-center space-x-2">
+                    <i class="fa-solid fa-percent"></i>
+                    <span>SYSTEM TAX / 料金システム</span>
+                </p>
+                <p class="text-gray-300">TAX & Service: <span class="text-amber-300 font-bold font-montserrat">40%</span> (込)</p>
+                <p class="text-[11px] text-gray-400 mt-1">現金・各種カード・QR決済対応</p>
+            </div>
+        </div>
+
         <!-- Main Navigation Tabs -->
         <div class="flex justify-center flex-wrap gap-2 sm:gap-4 mb-10">
             <button onclick="switchTab('menu')" id="tab-menu" class="tab-btn active px-5 py-2.5 rounded-full text-xs sm:text-sm tracking-wider transition-all duration-300 border border-amber-500/30 flex flex-col items-center">
-                <span>CHAMPAGNE & MENU</span>
-                <span class="text-[9px] font-normal opacity-80">メニュー一覧</span>
+                <span>FULL MENU</span>
+                <span class="text-[9px] font-normal opacity-80">全メニュー</span>
             </button>
             <button onclick="switchTab('cast')" id="tab-cast" class="tab-btn px-5 py-2.5 bg-gray-900/80 text-amber-200/70 rounded-full text-xs sm:text-sm tracking-wider transition-all duration-300 border border-amber-500/20 hover:border-amber-500/50 flex flex-col items-center">
                 <span>HOST CAST</span>
                 <span class="text-[9px] font-normal opacity-80">ホストキャスト</span>
-            </button>
-            <button onclick="switchTab('system')" id="tab-system" class="tab-btn px-5 py-2.5 bg-gray-900/80 text-amber-200/70 rounded-full text-xs sm:text-sm tracking-wider transition-all duration-300 border border-amber-500/20 hover:border-amber-500/50 flex flex-col items-center">
-                <span>SYSTEM & TAX</span>
-                <span class="text-[9px] font-normal opacity-80">料金システム</span>
             </button>
             <button onclick="switchTab('history')" id="tab-history" class="tab-btn px-5 py-2.5 bg-gray-900/80 text-amber-200/70 rounded-full text-xs sm:text-sm tracking-wider transition-all duration-300 border border-amber-500/20 hover:border-amber-500/50 flex flex-col items-center">
                 <span>ORDER HISTORY</span>
@@ -129,9 +153,112 @@
             </button>
         </div>
 
-        <!-- SECTION 1: MENU LIST -->
+        <!-- SECTION 1: FULL MENU LIST -->
         <div id="section-menu" class="space-y-12">
             
+            <!-- Category: Set Charge -->
+            <div>
+                <div class="flex items-center space-x-3 mb-6 border-b border-amber-500/20 pb-2">
+                    <i class="fa-solid fa-couch text-amber-400 text-lg"></i>
+                    <div>
+                        <h2 class="text-xl font-cinzel text-amber-300 tracking-wider">SET CHARGE</h2>
+                        <span class="text-xs text-gray-400">セット料金</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="glass-card rounded-2xl p-5 flex justify-between items-center">
+                        <div><h3 class="font-bold text-white">初回 90分</h3><p class="text-xs text-gray-400">焼酎・ウイスキー飲み放題</p></div>
+                        <div class="text-right flex items-center space-x-3">
+                            <span class="font-montserrat text-amber-400 font-bold text-lg">¥3,000</span>
+                            <button onclick="addToEstimator('初回 90分', 3000)" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs">追加</button>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-5 flex justify-between items-center">
+                        <div><h3 class="font-bold text-white">通常 60分</h3><p class="text-xs text-gray-400">テーブルチャージ</p></div>
+                        <div class="text-right flex items-center space-x-3">
+                            <span class="font-montserrat text-amber-400 font-bold text-lg">¥8,000</span>
+                            <button onclick="addToEstimator('通常 60分', 8000)" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs">追加</button>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-5 flex justify-between items-center">
+                        <div><h3 class="font-bold text-white">延長 30分</h3><p class="text-xs text-gray-400">延長料金</p></div>
+                        <div class="text-right flex items-center space-x-3">
+                            <span class="font-montserrat text-amber-400 font-bold text-lg">¥4,000</span>
+                            <button onclick="addToEstimator('延長 30分', 4000)" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs">追加</button>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-5 flex justify-between items-center">
+                        <div><h3 class="font-bold text-white">女性同伴 60分</h3><p class="text-xs text-gray-400">お連れ様も一緒に</p></div>
+                        <div class="text-right flex items-center space-x-3">
+                            <span class="font-montserrat text-amber-400 font-bold text-lg">¥3,000</span>
+                            <button onclick="addToEstimator('女性同伴 60分', 3000)" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs">追加</button>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-5 flex justify-between items-center md:col-span-2">
+                        <div><h3 class="font-bold text-white">ノンアルコール 60分</h3><p class="text-xs text-gray-400">ソフトドリンク中心</p></div>
+                        <div class="text-right flex items-center space-x-3">
+                            <span class="font-montserrat text-amber-400 font-bold text-lg">¥5,000</span>
+                            <button onclick="addToEstimator('ノンアルコール 60分', 5000)" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs">追加</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category: Champagne -->
+            <div>
+                <div class="flex items-center space-x-3 mb-6 border-b border-amber-500/20 pb-2">
+                    <i class="fa-solid fa-wine-bottle text-amber-400 text-lg"></i>
+                    <div>
+                        <h2 class="text-xl font-cinzel text-amber-300 tracking-wider">CHAMPAGNE</h2>
+                        <span class="text-xs text-gray-400">シャンパン</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="glass-card rounded-2xl p-5 flex justify-between items-center">
+                        <div><h3 class="font-bold text-white">モエ・エ・シャンドン</h3><p class="text-xs text-gray-400">ブリュット / ロゼ</p></div>
+                        <div class="text-right flex items-center space-x-3">
+                            <span class="font-montserrat text-amber-400 font-bold text-lg">¥50,000</span>
+                            <button onclick="addToEstimator('モエ・エ・シャンドン', 50000)" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs">追加</button>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-5 flex justify-between items-center">
+                        <div><h3 class="font-bold text-white">ヴーヴ・クリコ</h3><p class="text-xs text-gray-400">イエローラベル</p></div>
+                        <div class="text-right flex items-center space-x-3">
+                            <span class="font-montserrat text-amber-400 font-bold text-lg">¥60,000</span>
+                            <button onclick="addToEstimator('ヴーヴ・クリコ イエローラベル', 60000)" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs">追加</button>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-5 flex justify-between items-center">
+                        <div><h3 class="font-bold text-white">ドン・ペリニヨン ブラン</h3><p class="text-xs text-gray-400">ドンペリ 白</p></div>
+                        <div class="text-right flex items-center space-x-3">
+                            <span class="font-montserrat text-amber-400 font-bold text-lg">¥150,000</span>
+                            <button onclick="addToEstimator('ドン・ペリニヨン ブラン', 150000)" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs">追加</button>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-5 flex justify-between items-center">
+                        <div><h3 class="font-bold text-white">ドン・ペリニヨン ロゼ</h3><p class="text-xs text-gray-400">ピンドン</p></div>
+                        <div class="text-right flex items-center space-x-3">
+                            <span class="font-montserrat text-amber-400 font-bold text-lg">¥300,000</span>
+                            <button onclick="addToEstimator('ドン・ペリニヨン ロゼ', 300000)" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs">追加</button>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-5 flex justify-between items-center">
+                        <div><h3 class="font-bold text-white">アルマンド ブリュット ゴールド</h3><p class="text-xs text-gray-400">Armand de Brignac</p></div>
+                        <div class="text-right flex items-center space-x-3">
+                            <span class="font-montserrat text-amber-400 font-bold text-lg">¥350,000</span>
+                            <button onclick="addToEstimator('アルマンド ゴールド', 350000)" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs">追加</button>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-5 flex justify-between items-center">
+                        <div><h3 class="font-bold text-white">エンジェル ヘイロー ピンク</h3><p class="text-xs text-gray-400">ANGEL CHAMPAGNE</p></div>
+                        <div class="text-right flex items-center space-x-3">
+                            <span class="font-montserrat text-amber-400 font-bold text-lg">¥500,000</span>
+                            <button onclick="addToEstimator('エンジェル ヘイロー ピンク', 500000)" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs">追加</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Category: Champagne Tower -->
             <div>
                 <div class="flex items-center space-x-3 mb-6 border-b border-amber-500/20 pb-2">
@@ -141,152 +268,115 @@
                         <span class="text-xs text-gray-400">シャンパンタワー</span>
                     </div>
                 </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="glass-card rounded-2xl p-6 transition-all duration-300 relative group overflow-hidden">
-                        <div class="absolute top-0 right-0 bg-gradient-to-l from-amber-500 to-amber-700 text-black text-[10px] font-bold px-4 py-1 rounded-bl-lg font-montserrat">
-                            ROYAL VIP
-                        </div>
-                        <div class="flex justify-between items-start mb-2">
-                            <div>
-                                <h3 class="text-lg font-bold text-white group-hover:text-amber-300 transition-colors">
-                                    Imperial Gold Tower (7 Tier)
-                                </h3>
-                                <p class="text-xs text-gray-400">インペリアル ゴールド タワー 7段</p>
-                            </div>
-                        </div>
-                        <p class="text-2xl font-black font-montserrat gold-gradient-text my-4">
-                            ¥3,500,000 <span class="text-xs text-gray-400 font-normal">(税・サ別)</span>
-                        </p>
-                        <div class="flex justify-end">
-                            <button onclick="addToEstimator('Imperial Gold Tower 7段', 3500000)" class="px-4 py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs transition-all flex items-center space-x-2">
-                                <i class="fa-solid fa-plus text-[10px]"></i>
-                                <span>ADD TO ORDER / 注文追加</span>
-                            </button>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="glass-card rounded-2xl p-5 flex justify-between items-center">
+                        <div><h3 class="font-bold text-white">5段タワー</h3><p class="text-xs text-gray-400">5本 / 台座付き</p></div>
+                        <div class="text-right flex items-center space-x-3">
+                            <span class="font-montserrat text-amber-400 font-bold text-lg">¥250,000</span>
+                            <button onclick="addToEstimator('5段シャンパンタワー', 250000)" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs">追加</button>
                         </div>
                     </div>
-
-                    <div class="glass-card rounded-2xl p-6 transition-all duration-300 relative group overflow-hidden">
-                        <div class="flex justify-between items-start mb-2">
-                            <div>
-                                <h3 class="text-lg font-bold text-white group-hover:text-amber-300 transition-colors">
-                                    Rose Crystal Tower (5 Tier)
-                                </h3>
-                                <p class="text-xs text-gray-400">ロゼ クリスタル タワー 5段</p>
-                            </div>
+                    <div class="glass-card rounded-2xl p-5 flex justify-between items-center">
+                        <div><h3 class="font-bold text-white">7段タワー</h3><p class="text-xs text-gray-400">7本 / 冷光花火付き</p></div>
+                        <div class="text-right flex items-center space-x-3">
+                            <span class="font-montserrat text-amber-400 font-bold text-lg">¥350,000</span>
+                            <button onclick="addToEstimator('7段シャンパンタワー', 350000)" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs">追加</button>
                         </div>
-                        <p class="text-2xl font-black font-montserrat gold-gradient-text my-4">
-                            ¥1,800,000 <span class="text-xs text-gray-400 font-normal">(税・サ別)</span>
-                        </p>
-                        <div class="flex justify-end">
-                            <button onclick="addToEstimator('Rose Crystal Tower 5段', 1800000)" class="px-4 py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs transition-all flex items-center space-x-2">
-                                <i class="fa-solid fa-plus text-[10px]"></i>
-                                <span>ADD TO ORDER / 注文追加</span>
-                            </button>
+                    </div>
+                    <div class="glass-card rounded-2xl p-5 flex justify-between items-center">
+                        <div><h3 class="font-bold text-white">10段タワー</h3><p class="text-xs text-gray-400">10本 / 特製デコ・応援幕付き</p></div>
+                        <div class="text-right flex items-center space-x-3">
+                            <span class="font-montserrat text-amber-400 font-bold text-lg">¥500,000</span>
+                            <button onclick="addToEstimator('10段シャンパンタワー', 500000)" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs">追加</button>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-5 flex justify-between items-center">
+                        <div><h3 class="font-bold text-white">20段タワー</h3><p class="text-xs text-gray-400">20本 / 貸切演出込み</p></div>
+                        <div class="text-right flex items-center space-x-3">
+                            <span class="font-montserrat text-amber-400 font-bold text-lg">¥1,500,000</span>
+                            <button onclick="addToEstimator('20段シャンパンタワー', 1500000)" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs">追加</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Category: Premium Champagne -->
-            <div>
-                <div class="flex items-center space-x-3 mb-6 border-b border-amber-500/20 pb-2">
-                    <i class="fa-solid fa-wine-bottle text-amber-400 text-lg"></i>
-                    <div>
-                        <h2 class="text-xl font-cinzel text-amber-300 tracking-wider">PREMIUM CHAMPAGNE</h2>
-                        <span class="text-xs text-gray-400">高級シャンパン</span>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="glass-card rounded-2xl p-5 transition-all duration-300 flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-bold text-white mb-0.5">Armand de Brignac Gold</h3>
-                            <p class="text-xs text-gray-400 mb-3">アルマンド・ブリニャック ゴールド</p>
-                            <p class="text-xl font-black font-montserrat gold-gradient-text mb-4">
-                                ¥500,000
-                            </p>
-                        </div>
-                        <div>
-                            <button onclick="addToEstimator('Armand de Brignac Gold', 500000)" class="w-full py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs transition-all flex justify-center items-center space-x-1">
-                                <i class="fa-solid fa-plus text-[10px]"></i>
-                                <span>ADD / 追加</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="glass-card rounded-2xl p-5 transition-all duration-300 flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-bold text-white mb-0.5">Dom Pérignon Rose</h3>
-                            <p class="text-xs text-gray-400 mb-3">ドン・ペリニヨン ロゼ (ピンドン)</p>
-                            <p class="text-xl font-black font-montserrat gold-gradient-text mb-4">
-                                ¥250,000
-                            </p>
-                        </div>
-                        <div>
-                            <button onclick="addToEstimator('Dom Pérignon Rose', 250000)" class="w-full py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs transition-all flex justify-center items-center space-x-1">
-                                <i class="fa-solid fa-plus text-[10px]"></i>
-                                <span>ADD / 追加</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="glass-card rounded-2xl p-5 transition-all duration-300 flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-bold text-white mb-0.5">Dom Pérignon Vintage</h3>
-                            <p class="text-xs text-gray-400 mb-3">ドン・ペリニヨン 白</p>
-                            <p class="text-xl font-black font-montserrat gold-gradient-text mb-4">
-                                ¥120,000
-                            </p>
-                        </div>
-                        <div>
-                            <button onclick="addToEstimator('Dom Pérignon Vintage', 120000)" class="w-full py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs transition-all flex justify-center items-center space-x-1">
-                                <i class="fa-solid fa-plus text-[10px]"></i>
-                                <span>ADD / 追加</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Category: Brandy & Whiskey -->
+            <!-- Category: Sake & Bottle & Drink -->
             <div>
                 <div class="flex items-center space-x-3 mb-6 border-b border-amber-500/20 pb-2">
                     <i class="fa-solid fa-glass-whiskey text-amber-400 text-lg"></i>
                     <div>
-                        <h2 class="text-xl font-cinzel text-amber-300 tracking-wider">BRANDY & WHISKEY</h2>
-                        <span class="text-xs text-gray-400">ブランデー・ウイスキー</span>
+                        <h2 class="text-xl font-cinzel text-amber-300 tracking-wider">SAKE, BOTTLE & DRINK</h2>
+                        <span class="text-xs text-gray-400">日本酒・ボトル・ドリンク</span>
                     </div>
                 </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="glass-card rounded-2xl p-5 flex justify-between items-center">
-                        <div>
-                            <h3 class="font-bold text-white">Louis XIII Remy Martin</h3>
-                            <p class="text-xs text-gray-400">ルイ13世 レミーマルタン</p>
-                            <p class="text-lg font-black font-montserrat gold-gradient-text mt-1">
-                                ¥2,000,000
-                            </p>
-                        </div>
-                        <div>
-                            <button onclick="addToEstimator('Louis XIII', 2000000)" class="px-4 py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs transition-all">
-                                ADD / 追加
-                            </button>
+                        <div><h3 class="font-bold text-white">獺祭 磨き二割三分</h3><p class="text-xs text-gray-400">日本酒</p></div>
+                        <div class="text-right flex items-center space-x-3">
+                            <span class="font-montserrat text-amber-400 font-bold text-lg">¥25,000</span>
+                            <button onclick="addToEstimator('獺祭 磨き二割三分', 25000)" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs">追加</button>
                         </div>
                     </div>
-
                     <div class="glass-card rounded-2xl p-5 flex justify-between items-center">
-                        <div>
-                            <h3 class="font-bold text-white">Yamazaki 18 Years</h3>
-                            <p class="text-xs text-gray-400">山崎 18年</p>
-                            <p class="text-lg font-black font-montserrat gold-gradient-text mt-1">
-                                ¥350,000
-                            </p>
+                        <div><h3 class="font-bold text-white">十四代 本丸</h3><p class="text-xs text-gray-400">日本酒</p></div>
+                        <div class="text-right flex items-center space-x-3">
+                            <span class="font-montserrat text-amber-400 font-bold text-lg">¥50,000</span>
+                            <button onclick="addToEstimator('十四代 本丸', 50000)" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs">追加</button>
                         </div>
-                        <div>
-                            <button onclick="addToEstimator('Yamazaki 18 Years', 350000)" class="px-4 py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs transition-all">
-                                ADD / 追加
-                            </button>
+                    </div>
+                    <div class="glass-card rounded-2xl p-5 flex justify-between items-center">
+                        <div><h3 class="font-bold text-white">響 JAPANESE HARMONY</h3><p class="text-xs text-gray-400">ウイスキー</p></div>
+                        <div class="text-right flex items-center space-x-3">
+                            <span class="font-montserrat text-amber-400 font-bold text-lg">¥50,000</span>
+                            <button onclick="addToEstimator('響 JAPANESE HARMONY', 50000)" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs">追加</button>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-5 flex justify-between items-center">
+                        <div><h3 class="font-bold text-white">リシャール ヘネシー</h3><p class="text-xs text-gray-400">最高級ブランデー</p></div>
+                        <div class="text-right flex items-center space-x-3">
+                            <span class="font-montserrat text-amber-400 font-bold text-lg">¥1,500,000</span>
+                            <button onclick="addToEstimator('リシャール ヘネシー', 1500000)" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs">追加</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category: Service & Presentation -->
+            <div>
+                <div class="flex items-center space-x-3 mb-6 border-b border-amber-500/20 pb-2">
+                    <i class="fa-solid fa-star text-amber-400 text-lg"></i>
+                    <div>
+                        <h2 class="text-xl font-cinzel text-amber-300 tracking-wider">SERVICE & PRESENTATION</h2>
+                        <span class="text-xs text-gray-400">サービス・演出オプション</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="glass-card rounded-2xl p-5 flex justify-between items-center">
+                        <div><h3 class="font-bold text-white">本指名</h3><p class="text-xs text-gray-400">事前予約の上ご来店</p></div>
+                        <div class="text-right flex items-center space-x-3">
+                            <span class="font-montserrat text-amber-400 font-bold text-lg">¥3,000</span>
+                            <button onclick="addToEstimator('本指名', 3000)" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs">追加</button>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-5 flex justify-between items-center">
+                        <div><h3 class="font-bold text-white">同伴</h3><p class="text-xs text-gray-400">お出迎え・お見送り付き</p></div>
+                        <div class="text-right flex items-center space-x-3">
+                            <span class="font-montserrat text-amber-400 font-bold text-lg">¥3,000</span>
+                            <button onclick="addToEstimator('同伴', 3000)" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs">追加</button>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-5 flex justify-between items-center">
+                        <div><h3 class="font-bold text-white">プロジェクション映像演出</h3><p class="text-xs text-gray-400">3分 / 特製映像制作</p></div>
+                        <div class="text-right flex items-center space-x-3">
+                            <span class="font-montserrat text-amber-400 font-bold text-lg">¥50,000</span>
+                            <button onclick="addToEstimator('プロジェクション映像演出', 50000)" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs">追加</button>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-5 flex justify-between items-center">
+                        <div><h3 class="font-bold text-white">生誕祭・周年イベント</h3><p class="text-xs text-gray-400">ステージ演出</p></div>
+                        <div class="text-right flex items-center space-x-3">
+                            <span class="font-montserrat text-amber-400 font-bold text-lg">¥50,000</span>
+                            <button onclick="addToEstimator('生誕祭・周年イベント演出', 50000)" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs">追加</button>
                         </div>
                     </div>
                 </div>
@@ -343,61 +433,7 @@
             </div>
         </div>
 
-        <!-- SECTION 3: SYSTEM & TAX -->
-        <div id="section-system" class="hidden space-y-8 max-w-3xl mx-auto">
-            <div class="glass-card rounded-2xl p-8 border border-amber-500/30">
-                <h2 class="text-2xl font-cinzel text-amber-300 mb-2 border-b border-amber-500/20 pb-3 flex items-center justify-between">
-                    <span>SYSTEM & CHARGE</span>
-                    <span class="text-xs text-gray-400 font-normal">システム料金案内</span>
-                </h2>
-
-                <div class="space-y-6 my-6 text-sm">
-                    <div class="flex justify-between items-center border-b border-gray-800 pb-3">
-                        <div>
-                            <p class="font-bold text-white">First Visit / 初回料金 (90 min)</p>
-                            <p class="text-xs text-gray-400">鏡月・ソフトドリンク飲み放題</p>
-                        </div>
-                        <p class="text-amber-400 font-bold font-montserrat text-lg">¥3,000</p>
-                    </div>
-
-                    <div class="flex justify-between items-center border-b border-gray-800 pb-3">
-                        <div>
-                            <p class="font-bold text-white">Standard Charge / 基本セット料金 (1 Hour)</p>
-                            <p class="text-xs text-gray-400">1時間あたりのテーブルチャージ</p>
-                        </div>
-                        <p class="text-amber-400 font-bold font-montserrat text-lg">¥10,000</p>
-                    </div>
-
-                    <div class="flex justify-between items-center border-b border-gray-800 pb-3">
-                        <div>
-                            <p class="font-bold text-white">Nomination Fee / 指名料</p>
-                            <p class="text-xs text-gray-400">本指名 / 場内指名共通</p>
-                        </div>
-                        <p class="text-amber-400 font-bold font-montserrat text-lg">¥3,000</p>
-                    </div>
-
-                    <div class="flex justify-between items-center border-b border-gray-800 pb-3">
-                        <div>
-                            <p class="font-bold text-white">VIP Room Charge / VIPルーム使用料 (1 Hour)</p>
-                            <p class="text-xs text-gray-400">完全個室VIPルーム</p>
-                        </div>
-                        <p class="text-amber-400 font-bold font-montserrat text-lg">¥30,000</p>
-                    </div>
-
-                    <div class="bg-amber-500/10 rounded-xl p-4 border border-amber-500/20">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <p class="font-bold text-amber-300">TAX & Service Charge / 税・サービス料</p>
-                                <p class="text-xs text-gray-400 mt-1">サービス料 35% + 消費税 10%（合計45%算定）</p>
-                            </div>
-                            <p class="text-xl font-bold font-montserrat text-amber-400">35% + 10%</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SECTION 4: ORDER HISTORY PAGE -->
+        <!-- SECTION 3: ORDER HISTORY PAGE -->
         <div id="section-history" class="hidden space-y-8 max-w-4xl mx-auto">
             <div class="glass-card rounded-2xl p-6 sm:p-10 border border-amber-500/40 shadow-2xl space-y-8">
                 <div class="flex justify-between items-center border-b border-amber-500/20 pb-6">
@@ -417,13 +453,12 @@
                     </h3>
 
                     <div id="history-list" class="space-y-2 text-xs sm:text-sm">
-                        <!-- Populated via JS -->
                     </div>
                 </div>
 
                 <div class="border-t border-gray-800 pt-4 space-y-2 text-right">
                     <p class="text-xs text-gray-400">小計: <span id="history-subtotal" class="font-montserrat">¥0</span></p>
-                    <p class="text-xs text-gray-400">税・サービス料 (45%): <span id="history-tax" class="font-montserrat">¥0</span></p>
+                    <p class="text-xs text-gray-400">TAX & Service (40%): <span id="history-tax" class="font-montserrat">¥0</span></p>
                     <p class="text-lg font-bold text-amber-300 pt-2 border-t border-gray-800">
                         ご請求合計金額: <span id="history-total" class="font-montserrat text-2xl gold-gradient-text">¥0</span>
                     </p>
@@ -452,7 +487,7 @@
                     <span id="subtotal-val" class="font-montserrat">¥0</span>
                 </div>
                 <div class="flex justify-between text-gray-400">
-                    <span>Tax & Service (45%):</span>
+                    <span>TAX (40%):</span>
                     <span id="tax-val" class="font-montserrat">¥0</span>
                 </div>
                 <div class="flex justify-between text-base font-bold text-amber-300 pt-1 border-t border-gray-800">
@@ -487,12 +522,10 @@
         function switchTab(tabName) {
             document.getElementById('section-menu').classList.add('hidden');
             document.getElementById('section-cast').classList.add('hidden');
-            document.getElementById('section-system').classList.add('hidden');
             document.getElementById('section-history').classList.add('hidden');
 
             document.getElementById('tab-menu').classList.remove('active');
             document.getElementById('tab-cast').classList.remove('active');
-            document.getElementById('tab-system').classList.remove('active');
             document.getElementById('tab-history').classList.remove('active');
 
             document.getElementById(`section-${tabName}`).classList.remove('hidden');
@@ -544,11 +577,11 @@
                 });
             }
 
-            const taxAndService = Math.round(subtotal * 0.45);
-            const total = subtotal + taxAndService;
+            const tax = Math.round(subtotal * 0.40);
+            const total = subtotal + tax;
 
             document.getElementById('subtotal-val').innerText = `¥${subtotal.toLocaleString()}`;
-            document.getElementById('tax-val').innerText = `¥${taxAndService.toLocaleString()}`;
+            document.getElementById('tax-val').innerText = `¥${tax.toLocaleString()}`;
             document.getElementById('total-val').innerText = `¥${total.toLocaleString()}`;
             document.getElementById('cart-count').innerText = currentBasket.length;
         }
@@ -571,9 +604,9 @@
                 return;
             }
 
-            let savedHistory = JSON.parse(localStorage.getItem('aura_history_all') || '[]');
+            let savedHistory = JSON.parse(localStorage.getItem('chrono_history_all') || '[]');
             savedHistory = savedHistory.concat(currentBasket);
-            localStorage.setItem('aura_history_all', JSON.stringify(savedHistory));
+            localStorage.setItem('chrono_history_all', JSON.stringify(savedHistory));
 
             currentBasket = [];
             updateEstimatorUI();
@@ -583,7 +616,7 @@
         }
 
         function renderHistoryUI() {
-            const savedHistory = JSON.parse(localStorage.getItem('aura_history_all') || '[]');
+            const savedHistory = JSON.parse(localStorage.getItem('chrono_history_all') || '[]');
             const listContainer = document.getElementById('history-list');
             listContainer.innerHTML = '';
 
@@ -603,17 +636,17 @@
                 });
             }
 
-            const taxAndService = Math.round(subtotal * 0.45);
-            const total = subtotal + taxAndService;
+            const tax = Math.round(subtotal * 0.40);
+            const total = subtotal + tax;
 
             document.getElementById('history-subtotal').innerText = `¥${subtotal.toLocaleString()}`;
-            document.getElementById('history-tax').innerText = `¥${taxAndService.toLocaleString()}`;
+            document.getElementById('history-tax').innerText = `¥${tax.toLocaleString()}`;
             document.getElementById('history-total').innerText = `¥${total.toLocaleString()}`;
         }
 
         function clearHistory() {
             if (confirm('注文履歴を消去しますか？')) {
-                localStorage.removeItem('aura_history_all');
+                localStorage.removeItem('chrono_history_all');
                 renderHistoryUI();
             }
         }
