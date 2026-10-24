@@ -390,7 +390,7 @@
                 <p class="text-xs text-gray-400 mt-1">当グループが誇る極上のホストキャスト一覧</p>
             </div>
 
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
                 <div class="glass-card rounded-2xl p-5 text-center group hover:border-amber-400 transition-all flex flex-col items-center justify-center">
                     <span class="inline-block px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-bold border border-amber-500/30 mb-3">
                         OWNER / オーナー
@@ -403,7 +403,7 @@
                     <span class="inline-block px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-[10px] font-bold border border-purple-500/30 mb-3">
                         LEADER / リーダー
                     </span>
-                    <h3 class="text-lg font-bold text-white tracking-wide">ヤドリ</h3>
+                    <h3 class="text-lg font-bold text-white tracking-wide">夜怒理</h3>
                     <p class="text-[11px] text-gray-400 font-montserrat mt-1">Yadori</p>
                 </div>
 
@@ -411,7 +411,7 @@
                     <span class="inline-block px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-[10px] font-bold border border-purple-500/30 mb-3">
                         HOST / ホスト
                     </span>
-                    <h3 class="text-lg font-bold text-white tracking-wide">にんじん</h3>
+                    <h3 class="text-lg font-bold text-white tracking-wide">人人</h3>
                     <p class="text-[11px] text-gray-400 font-montserrat mt-1">Ninjin</p>
                 </div>
 
@@ -419,7 +419,7 @@
                     <span class="inline-block px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-[10px] font-bold border border-purple-500/30 mb-3">
                         HOST / ホスト
                     </span>
-                    <h3 class="text-lg font-bold text-white tracking-wide">NYO</h3>
+                    <h3 class="text-lg font-bold text-white tracking-wide">新世</h3>
                     <p class="text-[11px] text-gray-400 font-montserrat mt-1">Nyo</p>
                 </div>
 
@@ -429,6 +429,14 @@
                     </span>
                     <h3 class="text-lg font-bold text-white tracking-wide">寝起きのぽーらん</h3>
                     <p class="text-[11px] text-gray-400 font-montserrat mt-1">Poran</p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-5 text-center group hover:border-amber-400 transition-all flex flex-col items-center justify-center">
+                    <span class="inline-block px-3 py-1 rounded-full bg-pink-500/20 text-pink-300 text-[10px] font-bold border border-pink-500/30 mb-3">
+                        PRINCESS / 第一姫
+                    </span>
+                    <h3 class="text-lg font-bold text-white tracking-wide">愛陽</h3>
+                    <p class="text-[11px] text-gray-400 font-montserrat mt-1">Hato Pia</p>
                 </div>
             </div>
         </div>
@@ -638,10 +646,8 @@
 
             const savedName = localStorage.getItem('chrono_device_username');
             if (!savedName) {
-                // If no name registered on this device, prompt name input modal
                 document.getElementById('name-modal').classList.remove('hidden');
             } else {
-                // Name already forced/saved for this device, proceed directly
                 confirmOrderToHistory(savedName);
             }
         }
