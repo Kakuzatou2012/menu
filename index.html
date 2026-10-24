@@ -36,10 +36,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .gold-border {
-            border: 1px solid rgba(212, 175, 55, 0.3);
-        }
-
         .glass-card {
             background: var(--card-bg);
             backdrop-filter: blur(12px);
@@ -88,24 +84,8 @@
     <!-- Particle Background -->
     <canvas id="particles-canvas"></canvas>
 
-    <!-- MAIN APP VIEW -->
-    <div id="app-view" class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-
-        <!-- Top Controls / Settings Bar -->
-        <div class="flex justify-between items-center mb-6 glass-card p-4 rounded-xl gold-border">
-            <div class="flex items-center space-x-3">
-                <i class="fa-solid fa-gem text-amber-400 text-xl"></i>
-                <span class="text-xs sm:text-sm text-gray-300 tracking-wider">STORE MODE / 店舗設定</span>
-            </div>
-            
-            <div class="flex items-center space-x-3">
-                <span class="text-xs text-gray-400 font-montserrat">ORDER BUTTON / 注文ボタン</span>
-                <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" id="order-toggle" class="sr-only peer" checked onchange="toggleOrderButton()">
-                    <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-500"></div>
-                </label>
-            </div>
-        </div>
+    <!-- Content Container -->
+    <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
 
         <!-- Header Section -->
         <header class="text-center my-10 relative">
@@ -130,18 +110,22 @@
         </header>
 
         <!-- Main Navigation Tabs -->
-        <div class="flex justify-center space-x-2 sm:space-x-4 mb-10">
-            <button onclick="switchTab('menu')" id="tab-menu" class="tab-btn active px-6 py-2.5 rounded-full text-xs sm:text-sm tracking-wider transition-all duration-300 border border-amber-500/30 flex flex-col items-center">
+        <div class="flex justify-center flex-wrap gap-2 sm:gap-4 mb-10">
+            <button onclick="switchTab('menu')" id="tab-menu" class="tab-btn active px-5 py-2.5 rounded-full text-xs sm:text-sm tracking-wider transition-all duration-300 border border-amber-500/30 flex flex-col items-center">
                 <span>CHAMPAGNE & MENU</span>
                 <span class="text-[9px] font-normal opacity-80">メニュー一覧</span>
             </button>
-            <button onclick="switchTab('cast')" id="tab-cast" class="tab-btn px-6 py-2.5 bg-gray-900/80 text-amber-200/70 rounded-full text-xs sm:text-sm tracking-wider transition-all duration-300 border border-amber-500/20 hover:border-amber-500/50 flex flex-col items-center">
+            <button onclick="switchTab('cast')" id="tab-cast" class="tab-btn px-5 py-2.5 bg-gray-900/80 text-amber-200/70 rounded-full text-xs sm:text-sm tracking-wider transition-all duration-300 border border-amber-500/20 hover:border-amber-500/50 flex flex-col items-center">
                 <span>HOST CAST</span>
                 <span class="text-[9px] font-normal opacity-80">ホストキャスト</span>
             </button>
-            <button onclick="switchTab('system')" id="tab-system" class="tab-btn px-6 py-2.5 bg-gray-900/80 text-amber-200/70 rounded-full text-xs sm:text-sm tracking-wider transition-all duration-300 border border-amber-500/20 hover:border-amber-500/50 flex flex-col items-center">
+            <button onclick="switchTab('system')" id="tab-system" class="tab-btn px-5 py-2.5 bg-gray-900/80 text-amber-200/70 rounded-full text-xs sm:text-sm tracking-wider transition-all duration-300 border border-amber-500/20 hover:border-amber-500/50 flex flex-col items-center">
                 <span>SYSTEM & TAX</span>
                 <span class="text-[9px] font-normal opacity-80">料金システム</span>
+            </button>
+            <button onclick="switchTab('history')" id="tab-history" class="tab-btn px-5 py-2.5 bg-gray-900/80 text-amber-200/70 rounded-full text-xs sm:text-sm tracking-wider transition-all duration-300 border border-amber-500/20 hover:border-amber-500/50 flex flex-col items-center">
+                <span>ORDER HISTORY</span>
+                <span class="text-[9px] font-normal opacity-80">注文履歴</span>
             </button>
         </div>
 
@@ -174,7 +158,7 @@
                         <p class="text-2xl font-black font-montserrat gold-gradient-text my-4">
                             ¥3,500,000 <span class="text-xs text-gray-400 font-normal">(税・サ別)</span>
                         </p>
-                        <div class="order-btn-container flex justify-end">
+                        <div class="flex justify-end">
                             <button onclick="addToEstimator('Imperial Gold Tower 7段', 3500000)" class="px-4 py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs transition-all flex items-center space-x-2">
                                 <i class="fa-solid fa-plus text-[10px]"></i>
                                 <span>ADD TO ORDER / 注文追加</span>
@@ -194,7 +178,7 @@
                         <p class="text-2xl font-black font-montserrat gold-gradient-text my-4">
                             ¥1,800,000 <span class="text-xs text-gray-400 font-normal">(税・サ別)</span>
                         </p>
-                        <div class="order-btn-container flex justify-end">
+                        <div class="flex justify-end">
                             <button onclick="addToEstimator('Rose Crystal Tower 5段', 1800000)" class="px-4 py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs transition-all flex items-center space-x-2">
                                 <i class="fa-solid fa-plus text-[10px]"></i>
                                 <span>ADD TO ORDER / 注文追加</span>
@@ -223,7 +207,7 @@
                                 ¥500,000
                             </p>
                         </div>
-                        <div class="order-btn-container">
+                        <div>
                             <button onclick="addToEstimator('Armand de Brignac Gold', 500000)" class="w-full py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs transition-all flex justify-center items-center space-x-1">
                                 <i class="fa-solid fa-plus text-[10px]"></i>
                                 <span>ADD / 追加</span>
@@ -239,7 +223,7 @@
                                 ¥250,000
                             </p>
                         </div>
-                        <div class="order-btn-container">
+                        <div>
                             <button onclick="addToEstimator('Dom Pérignon Rose', 250000)" class="w-full py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs transition-all flex justify-center items-center space-x-1">
                                 <i class="fa-solid fa-plus text-[10px]"></i>
                                 <span>ADD / 追加</span>
@@ -255,7 +239,7 @@
                                 ¥120,000
                             </p>
                         </div>
-                        <div class="order-btn-container">
+                        <div>
                             <button onclick="addToEstimator('Dom Pérignon Vintage', 120000)" class="w-full py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs transition-all flex justify-center items-center space-x-1">
                                 <i class="fa-solid fa-plus text-[10px]"></i>
                                 <span>ADD / 追加</span>
@@ -284,7 +268,7 @@
                                 ¥2,000,000
                             </p>
                         </div>
-                        <div class="order-btn-container">
+                        <div>
                             <button onclick="addToEstimator('Louis XIII', 2000000)" class="px-4 py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs transition-all">
                                 ADD / 追加
                             </button>
@@ -299,7 +283,7 @@
                                 ¥350,000
                             </p>
                         </div>
-                        <div class="order-btn-container">
+                        <div>
                             <button onclick="addToEstimator('Yamazaki 18 Years', 350000)" class="px-4 py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs transition-all">
                                 ADD / 追加
                             </button>
@@ -413,6 +397,40 @@
             </div>
         </div>
 
+        <!-- SECTION 4: ORDER HISTORY PAGE -->
+        <div id="section-history" class="hidden space-y-8 max-w-4xl mx-auto">
+            <div class="glass-card rounded-2xl p-6 sm:p-10 border border-amber-500/40 shadow-2xl space-y-8">
+                <div class="flex justify-between items-center border-b border-amber-500/20 pb-6">
+                    <div>
+                        <span class="text-xs text-amber-400 font-montserrat uppercase tracking-widest">ORDER HISTORY / ご注文履歴</span>
+                        <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1">伝票・注文内容</h2>
+                    </div>
+                    <button onclick="clearHistory()" class="px-3 py-1.5 rounded-lg bg-red-900/40 hover:bg-red-800/60 text-xs text-red-300 border border-red-500/30 transition-all">
+                        <i class="fa-solid fa-trash-can mr-1"></i> 伝票リセット
+                    </button>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="text-sm font-bold text-amber-300 flex items-center space-x-2">
+                        <i class="fa-solid fa-receipt"></i>
+                        <span>オーダー品目一覧</span>
+                    </h3>
+
+                    <div id="history-list" class="space-y-2 text-xs sm:text-sm">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-800 pt-4 space-y-2 text-right">
+                    <p class="text-xs text-gray-400">小計: <span id="history-subtotal" class="font-montserrat">¥0</span></p>
+                    <p class="text-xs text-gray-400">税・サービス料 (45%): <span id="history-tax" class="font-montserrat">¥0</span></p>
+                    <p class="text-lg font-bold text-amber-300 pt-2 border-t border-gray-800">
+                        ご請求合計金額: <span id="history-total" class="font-montserrat text-2xl gold-gradient-text">¥0</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
         <!-- ESTIMATOR / BASKET FLOATING PANEL -->
         <div id="estimator-panel" class="fixed bottom-6 right-6 z-50 glass-card rounded-2xl p-4 border-2 border-amber-500/50 shadow-2xl max-w-sm w-full hidden">
             <div class="flex justify-between items-center border-b border-gray-700 pb-2 mb-3">
@@ -443,9 +461,9 @@
                 </div>
             </div>
 
-            <div class="order-btn-container mt-3">
-                <button onclick="handleOrderSubmit()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-700 text-black font-bold text-xs tracking-wider shadow-lg hover:brightness-110 transition-all">
-                    CONFIRM ORDER / 注文を確定する
+            <div class="mt-3">
+                <button onclick="confirmOrderToHistory()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-700 text-black font-bold text-xs tracking-wider shadow-lg hover:brightness-110 transition-all">
+                    CONFIRM ORDER / 注文を確定して履歴に追加
                 </button>
             </div>
         </div>
@@ -458,121 +476,35 @@
 
     </div>
 
-    <!-- PAGE TRANSITION: NAME INPUT MODAL -->
-    <div id="name-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden">
-        <div class="glass-card p-6 sm:p-8 rounded-2xl max-w-md w-full border border-amber-500/40 shadow-2xl text-center space-y-6">
-            <div>
-                <i class="fa-solid fa-user-check text-amber-400 text-3xl mb-3"></i>
-                <h3 class="text-xl font-bold text-white tracking-wider">MEMBER REGISTRATION</h3>
-                <p class="text-xs text-gray-400 mt-1">お客様のお名前（お呼び名）を入力してください</p>
-                <p class="text-[10px] text-amber-400/80 mt-0.5">※この端末では1日1回のみ登録が可能です</p>
-            </div>
-
-            <input type="text" id="user-name-input" placeholder="例：姫様 / ゲスト" class="w-full px-4 py-3 rounded-xl bg-black/60 border border-amber-500/30 text-white text-center text-sm focus:outline-none focus:border-amber-400 transition-all">
-
-            <button onclick="saveNameAndProceed()" class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-700 text-black font-bold text-sm tracking-widest shadow-lg hover:brightness-110 transition-all">
-                確定して注文履歴を見る
-            </button>
-        </div>
-    </div>
-
-    <!-- PAGE TRANSITION: ORDER HISTORY PAGE -->
-    <div id="history-view" class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 hidden">
-        <div class="glass-card rounded-2xl p-6 sm:p-10 border border-amber-500/40 shadow-2xl space-y-8">
-            <div class="flex justify-between items-center border-b border-amber-500/20 pb-6">
-                <div>
-                    <span class="text-xs text-amber-400 font-montserrat uppercase tracking-widest">ORDER HISTORY / ご注文履歴</span>
-                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1">
-                        WELCOME, <span id="display-user-name" class="gold-gradient-text">---</span> 様
-                    </h2>
-                </div>
-                <button onclick="returnToMenu()" class="px-4 py-2 rounded-lg bg-gray-800/80 hover:bg-gray-700 text-xs text-gray-300 border border-gray-600 transition-all">
-                    <i class="fa-solid fa-arrow-left mr-1"></i> メニューへ戻る
-                </button>
-            </div>
-
-            <div class="space-y-4">
-                <h3 class="text-sm font-bold text-amber-300 flex items-center space-x-2">
-                    <i class="fa-solid fa-clock-rotate-left"></i>
-                    <span>本日のオーダー伝票</span>
-                </h3>
-
-                <div id="history-list" class="space-y-2 text-xs sm:text-sm">
-                </div>
-            </div>
-
-            <div class="border-t border-gray-800 pt-4 space-y-2 text-right">
-                <p class="text-xs text-gray-400">小計: <span id="history-subtotal" class="font-montserrat">¥0</span></p>
-                <p class="text-xs text-gray-400">税・サービス料 (45%): <span id="history-tax" class="font-montserrat">¥0</span></p>
-                <p class="text-lg font-bold text-amber-300 pt-2 border-t border-gray-800">
-                    ご請求合計金額: <span id="history-total" class="font-montserrat text-2xl gold-gradient-text">¥0</span>
-                </p>
-            </div>
-
-            <div class="bg-amber-500/10 rounded-xl p-4 border border-amber-500/20 text-center">
-                <p class="text-xs text-amber-300 font-bold">本日分のご注文を受け付けました。</p>
-                <p class="text-[11px] text-gray-400 mt-1">※この端末での登録は本日（24時間）有効です。明日になると自動リセットされます。</p>
-            </div>
-        </div>
-    </div>
-
     <!-- JavaScript Logic -->
     <script>
-        let orderList = [];
+        let currentBasket = [];
 
-        // Get Today's Date String (YYYY-MM-DD)
-        function getTodayString() {
-            const now = new Date();
-            return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-        }
-
-        // Check LocalStorage Daily Reset on Load
         window.addEventListener('DOMContentLoaded', () => {
-            const today = getTodayString();
-            const lastSavedDate = localStorage.getItem('aura_order_date');
-
-            if (lastSavedDate !== today) {
-                // Different day: Reset daily entries
-                localStorage.removeItem('aura_user_name');
-                localStorage.removeItem('aura_order_history');
-                localStorage.removeItem('aura_order_date');
-            } else {
-                // Same day: If user name & history exist, show history page directly
-                const savedName = localStorage.getItem('aura_user_name');
-                const savedHistory = localStorage.getItem('aura_order_history');
-                if (savedName && savedHistory) {
-                    renderHistoryPage(savedName, JSON.parse(savedHistory));
-                }
-            }
+            renderHistoryUI();
         });
 
         function switchTab(tabName) {
             document.getElementById('section-menu').classList.add('hidden');
             document.getElementById('section-cast').classList.add('hidden');
             document.getElementById('section-system').classList.add('hidden');
+            document.getElementById('section-history').classList.add('hidden');
 
             document.getElementById('tab-menu').classList.remove('active');
             document.getElementById('tab-cast').classList.remove('active');
             document.getElementById('tab-system').classList.remove('active');
+            document.getElementById('tab-history').classList.remove('active');
 
             document.getElementById(`section-${tabName}`).classList.remove('hidden');
             document.getElementById(`tab-${tabName}`).classList.add('active');
-        }
 
-        function toggleOrderButton() {
-            const isChecked = document.getElementById('order-toggle').checked;
-            const containers = document.querySelectorAll('.order-btn-container');
-            containers.forEach(el => {
-                if (isChecked) {
-                    el.classList.remove('hidden');
-                } else {
-                    el.classList.add('hidden');
-                }
-            });
+            if (tabName === 'history') {
+                renderHistoryUI();
+            }
         }
 
         function addToEstimator(name, price) {
-            orderList.push({ name, price });
+            currentBasket.push({ name, price });
             updateEstimatorUI();
             
             const panel = document.getElementById('estimator-panel');
@@ -583,7 +515,7 @@
         }
 
         function removeFromEstimator(index) {
-            orderList.splice(index, 1);
+            currentBasket.splice(index, 1);
             updateEstimatorUI();
         }
 
@@ -593,10 +525,10 @@
 
             let subtotal = 0;
 
-            if (orderList.length === 0) {
-                itemsContainer.innerHTML = `<p class="text-gray-500 text-center py-2">No items selected / 選択されていません</p>`;
+            if (currentBasket.length === 0) {
+                itemsContainer.innerHTML = `<p class="text-gray-500 text-center py-2">選択されていません</p>`;
             } else {
-                orderList.forEach((item, index) => {
+                currentBasket.forEach((item, index) => {
                     subtotal += item.price;
                     itemsContainer.innerHTML += `
                         <div class="flex justify-between items-center bg-black/40 p-2 rounded-lg border border-gray-800">
@@ -618,7 +550,7 @@
             document.getElementById('subtotal-val').innerText = `¥${subtotal.toLocaleString()}`;
             document.getElementById('tax-val').innerText = `¥${taxAndService.toLocaleString()}`;
             document.getElementById('total-val').innerText = `¥${total.toLocaleString()}`;
-            document.getElementById('cart-count').innerText = orderList.length;
+            document.getElementById('cart-count').innerText = currentBasket.length;
         }
 
         function toggleEstimatorModal() {
@@ -633,66 +565,43 @@
             }
         }
 
-        function handleOrderSubmit() {
-            if (orderList.length === 0) {
+        function confirmOrderToHistory() {
+            if (currentBasket.length === 0) {
                 alert('メニューを選択してください。');
                 return;
             }
 
-            const today = getTodayString();
-            const savedDate = localStorage.getItem('aura_order_date');
-            const savedName = localStorage.getItem('aura_user_name');
+            let savedHistory = JSON.parse(localStorage.getItem('aura_history_all') || '[]');
+            savedHistory = savedHistory.concat(currentBasket);
+            localStorage.setItem('aura_history_all', JSON.stringify(savedHistory));
 
-            if (savedDate === today && savedName) {
-                // Today's entry already exists on this device -> Directly view/update
-                saveHistoryAndTransition(savedName);
-            } else {
-                // First time today -> Open Name Modal
-                document.getElementById('name-modal').classList.remove('hidden');
-            }
+            currentBasket = [];
+            updateEstimatorUI();
+            toggleEstimatorModal();
+
+            switchTab('history');
         }
 
-        function saveNameAndProceed() {
-            const nameInput = document.getElementById('user-name-input').value.trim();
-            if (!nameInput) {
-                alert('お名前を入力してください。');
-                return;
-            }
-
-            const today = getTodayString();
-            localStorage.setItem('aura_user_name', nameInput);
-            localStorage.setItem('aura_order_date', today);
-
-            document.getElementById('name-modal').classList.add('hidden');
-            saveHistoryAndTransition(nameInput);
-        }
-
-        function saveHistoryAndTransition(userName) {
-            localStorage.setItem('aura_order_history', JSON.stringify(orderList));
-            renderHistoryPage(userName, orderList);
-        }
-
-        function renderHistoryPage(name, historyItems) {
-            document.getElementById('app-view').classList.add('hidden');
-            document.getElementById('estimator-panel').classList.add('hidden');
-            document.getElementById('cart-trigger').classList.add('hidden');
-            document.getElementById('history-view').classList.remove('hidden');
-
-            document.getElementById('display-user-name').innerText = name;
-
+        function renderHistoryUI() {
+            const savedHistory = JSON.parse(localStorage.getItem('aura_history_all') || '[]');
             const listContainer = document.getElementById('history-list');
             listContainer.innerHTML = '';
 
             let subtotal = 0;
-            historyItems.forEach(item => {
-                subtotal += item.price;
-                listContainer.innerHTML += `
-                    <div class="flex justify-between items-center bg-black/40 p-3 rounded-xl border border-gray-800">
-                        <span class="font-bold text-gray-200">${item.name}</span>
-                        <span class="font-montserrat text-amber-400 font-bold">¥${item.price.toLocaleString()}</span>
-                    </div>
-                `;
-            });
+
+            if (savedHistory.length === 0) {
+                listContainer.innerHTML = `<p class="text-gray-500 text-center py-6">注文履歴はありません</p>`;
+            } else {
+                savedHistory.forEach(item => {
+                    subtotal += item.price;
+                    listContainer.innerHTML += `
+                        <div class="flex justify-between items-center bg-black/40 p-3 rounded-xl border border-gray-800">
+                            <span class="font-bold text-gray-200">${item.name}</span>
+                            <span class="font-montserrat text-amber-400 font-bold">¥${item.price.toLocaleString()}</span>
+                        </div>
+                    `;
+                });
+            }
 
             const taxAndService = Math.round(subtotal * 0.45);
             const total = subtotal + taxAndService;
@@ -702,10 +611,11 @@
             document.getElementById('history-total').innerText = `¥${total.toLocaleString()}`;
         }
 
-        function returnToMenu() {
-            document.getElementById('history-view').classList.add('hidden');
-            document.getElementById('app-view').classList.remove('hidden');
-            document.getElementById('cart-trigger').classList.remove('hidden');
+        function clearHistory() {
+            if (confirm('注文履歴を消去しますか？')) {
+                localStorage.removeItem('aura_history_all');
+                renderHistoryUI();
+            }
         }
 
         const canvas = document.getElementById('particles-canvas');
