@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLUB AURA - Executive Lounge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Noto+Serif+JP:wght@300;400;600;900&family=Montserrat:wght@200;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-light: #F3E5AB;
+            --gold-dark: #AA771C;
+            --bg-dark: #0A0A0E;
+            --card-bg: rgba(18, 18, 26, 0.75);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #E2E8F0;
+            font-family: 'Noto Serif JP', 'Cinzel', serif;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.15), transparent 70%),
+                radial-gradient(circle at 0% 100%, rgba(138, 43, 226, 0.1), transparent 50%);
+            background-attachment: fixed;
+        }
+
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .font-montserrat { font-family: 'Montserrat', sans-serif; }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF6D5 0%, #D4AF37 50%, #8A6412 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-border {
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(212, 175, 55, 0.6);
+            box-shadow: 0 8px 32px 0 rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+        }
+
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #D4AF37 0%, #AA771C 100%);
+            color: #0A0A0E;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0A0A0E;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #AA771C;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="min-h-screen relative pb-20">
+
+    <!-- Particle Background -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Content Container -->
+    <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+
+        <!-- Top Controls / Settings Bar -->
+        <div class="flex justify-between items-center mb-6 glass-card p-4 rounded-xl gold-border">
+            <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-gem text-amber-400 text-xl"></i>
+                <span class="text-xs sm:text-sm text-gray-300 tracking-wider">STORE MODE / 店舗設定</span>
+            </div>
+            
+            <div class="flex items-center space-x-3">
+                <span class="text-xs text-gray-400 font-montserrat">ORDER BUTTON / 注文ボタン</span>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" id="order-toggle" class="sr-only peer" checked onchange="toggleOrderButton()">
+                    <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-500"></div>
+                </label>
+            </div>
+        </div>
+
+        <!-- Header Section -->
+        <header class="text-center my-10 relative">
+            <div class="inline-block mb-3">
+                <span class="text-xs uppercase tracking-[0.4em] text-amber-400 border-b border-amber-500/40 pb-1 font-montserrat">
+                    Kabukicho Executive Club
+                </span>
+                <span class="block text-[10px] text-gray-400 tracking-widest mt-1">歌舞伎町 エグゼクティブ クラブ</span>
+            </div>
+            
+            <h1 class="text-4xl sm:text-6xl font-black font-cinzel tracking-wider gold-gradient-text my-2 drop-shadow-md">
+                CLUB AURA
+            </h1>
+            <p class="text-xs sm:text-sm text-gray-400 tracking-widest font-light">
+                ROYAL VIP MENU & CAST DIRECTORY
+            </p>
+            <p class="text-[11px] text-amber-300/70 tracking-widest mt-0.5">
+                最高級VIPメニュー & キャスト一覧
+            </p>
+
+            <div class="w-24 h-0.5 bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto mt-6"></div>
+        </header>
+
+        <!-- Main Navigation Tabs -->
+        <div class="flex justify-center space-x-2 sm:space-x-4 mb-10">
+            <button onclick="switchTab('menu')" id="tab-menu" class="tab-btn active px-6 py-2.5 rounded-full text-xs sm:text-sm tracking-wider transition-all duration-300 border border-amber-500/30 flex flex-col items-center">
+                <span>CHAMPAGNE & MENU</span>
+                <span class="text-[9px] font-normal opacity-80">メニュー一覧</span>
+            </button>
+            <button onclick="switchTab('cast')" id="tab-cast" class="tab-btn px-6 py-2.5 bg-gray-900/80 text-amber-200/70 rounded-full text-xs sm:text-sm tracking-wider transition-all duration-300 border border-amber-500/20 hover:border-amber-500/50 flex flex-col items-center">
+                <span>HOST CAST</span>
+                <span class="text-[9px] font-normal opacity-80">ホストキャスト</span>
+            </button>
+            <button onclick="switchTab('system')" id="tab-system" class="tab-btn px-6 py-2.5 bg-gray-900/80 text-amber-200/70 rounded-full text-xs sm:text-sm tracking-wider transition-all duration-300 border border-amber-500/20 hover:border-amber-500/50 flex flex-col items-center">
+                <span>SYSTEM & TAX</span>
+                <span class="text-[9px] font-normal opacity-80">料金システム</span>
+            </button>
+        </div>
+
+        <!-- SECTION 1: MENU LIST -->
+        <div id="section-menu" class="space-y-12">
+            
+            <!-- Category: Champagne Tower -->
+            <div>
+                <div class="flex items-center space-x-3 mb-6 border-b border-amber-500/20 pb-2">
+                    <i class="fa-solid fa-crown text-amber-400 text-lg"></i>
+                    <div>
+                        <h2 class="text-xl font-cinzel text-amber-300 tracking-wider">CHAMPAGNE TOWER</h2>
+                        <span class="text-xs text-gray-400">シャンパンタワー</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Item 1 -->
+                    <div class="glass-card rounded-2xl p-6 transition-all duration-300 relative group overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-gradient-to-l from-amber-500 to-amber-700 text-black text-[10px] font-bold px-4 py-1 rounded-bl-lg font-montserrat">
+                            ROYAL VIP
+                        </div>
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 class="text-lg font-bold text-white group-hover:text-amber-300 transition-colors">
+                                    Imperial Gold Tower (7 Tier)
+                                </h3>
+                                <p class="text-xs text-gray-400">インペリアル ゴールド タワー 7段</p>
+                            </div>
+                        </div>
+                        <p class="text-2xl font-black font-montserrat gold-gradient-text my-4">
+                            ¥3,500,000 <span class="text-xs text-gray-400 font-normal">(税・サ別)</span>
+                        </p>
+                        <div class="order-btn-container flex justify-end">
+                            <button onclick="addToEstimator('Imperial Gold Tower 7段', 3500000)" class="px-4 py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs transition-all flex items-center space-x-2">
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                                <span>ADD TO ORDER / 注文追加</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="glass-card rounded-2xl p-6 transition-all duration-300 relative group overflow-hidden">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 class="text-lg font-bold text-white group-hover:text-amber-300 transition-colors">
+                                    Rose Crystal Tower (5 Tier)
+                                </h3>
+                                <p class="text-xs text-gray-400">ロゼ クリスタル タワー 5段</p>
+                            </div>
+                        </div>
+                        <p class="text-2xl font-black font-montserrat gold-gradient-text my-4">
+                            ¥1,800,000 <span class="text-xs text-gray-400 font-normal">(税・サ別)</span>
+                        </p>
+                        <div class="order-btn-container flex justify-end">
+                            <button onclick="addToEstimator('Rose Crystal Tower 5段', 1800000)" class="px-4 py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs transition-all flex items-center space-x-2">
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                                <span>ADD TO ORDER / 注文追加</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category: Premium Champagne -->
+            <div>
+                <div class="flex items-center space-x-3 mb-6 border-b border-amber-500/20 pb-2">
+                    <i class="fa-solid fa-wine-bottle text-amber-400 text-lg"></i>
+                    <div>
+                        <h2 class="text-xl font-cinzel text-amber-300 tracking-wider">PREMIUM CHAMPAGNE</h2>
+                        <span class="text-xs text-gray-400">高級シャンパン</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-2xl p-5 transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-white mb-0.5">Armand de Brignac Gold</h3>
+                            <p class="text-xs text-gray-400 mb-3">アルマンド・ブリニャック ゴールド</p>
+                            <p class="text-xl font-black font-montserrat gold-gradient-text mb-4">
+                                ¥500,000
+                            </p>
+                        </div>
+                        <div class="order-btn-container">
+                            <button onclick="addToEstimator('Armand de Brignac Gold', 500000)" class="w-full py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs transition-all flex justify-center items-center space-x-1">
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                                <span>ADD / 追加</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-5 transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-white mb-0.5">Dom Pérignon Rose</h3>
+                            <p class="text-xs text-gray-400 mb-3">ドン・ペリニヨン ロゼ (ピンドン)</p>
+                            <p class="text-xl font-black font-montserrat gold-gradient-text mb-4">
+                                ¥250,000
+                            </p>
+                        </div>
+                        <div class="order-btn-container">
+                            <button onclick="addToEstimator('Dom Pérignon Rose', 250000)" class="w-full py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs transition-all flex justify-center items-center space-x-1">
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                                <span>ADD / 追加</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-5 transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-white mb-0.5">Dom Pérignon Vintage</h3>
+                            <p class="text-xs text-gray-400 mb-3">ドン・ペリニヨン 白</p>
+                            <p class="text-xl font-black font-montserrat gold-gradient-text mb-4">
+                                ¥120,000
+                            </p>
+                        </div>
+                        <div class="order-btn-container">
+                            <button onclick="addToEstimator('Dom Pérignon Vintage', 120000)" class="w-full py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs transition-all flex justify-center items-center space-x-1">
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                                <span>ADD / 追加</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category: Brandy & Whiskey -->
+            <div>
+                <div class="flex items-center space-x-3 mb-6 border-b border-amber-500/20 pb-2">
+                    <i class="fa-solid fa-glass-whiskey text-amber-400 text-lg"></i>
+                    <div>
+                        <h2 class="text-xl font-cinzel text-amber-300 tracking-wider">BRANDY & WHISKEY</h2>
+                        <span class="text-xs text-gray-400">ブランデー・ウイスキー</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="glass-card rounded-2xl p-5 flex justify-between items-center">
+                        <div>
+                            <h3 class="font-bold text-white">Louis XIII Remy Martin</h3>
+                            <p class="text-xs text-gray-400">ルイ13世 レミーマルタン</p>
+                            <p class="text-lg font-black font-montserrat gold-gradient-text mt-1">
+                                ¥2,000,000
+                            </p>
+                        </div>
+                        <div class="order-btn-container">
+                            <button onclick="addToEstimator('Louis XIII', 2000000)" class="px-4 py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs transition-all">
+                                ADD / 追加
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-5 flex justify-between items-center">
+                        <div>
+                            <h3 class="font-bold text-white">Yamazaki 18 Years</h3>
+                            <p class="text-xs text-gray-400">山崎 18年</p>
+                            <p class="text-lg font-black font-montserrat gold-gradient-text mt-1">
+                                ¥350,000
+                            </p>
+                        </div>
+                        <div class="order-btn-container">
+                            <button onclick="addToEstimator('Yamazaki 18 Years', 350000)" class="px-4 py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs transition-all">
+                                ADD / 追加
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: HOST CAST DIRECTORY (NO IMAGES) -->
+        <div id="section-cast" class="hidden space-y-8">
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <h2 class="text-2xl font-cinzel text-amber-300 tracking-wider">EXECUTIVE CAST MEMBERS</h2>
+                <p class="text-xs text-gray-400 mt-1">当グループが誇る極上のホストキャスト一覧</p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+                <!-- Host 1: 華東 玲王 -->
+                <div class="glass-card rounded-2xl p-5 text-center group hover:border-amber-400 transition-all flex flex-col items-center justify-center">
+                    <span class="inline-block px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-bold border border-amber-500/30 mb-3">
+                        PRODUCER / オーナー
+                    </span>
+                    <h3 class="text-lg font-bold text-white tracking-wide">華東 玲王</h3>
+                    <p class="text-[11px] text-gray-400 font-montserrat mt-1">未定</p>
+                </div>
+
+                <!-- Host 2: ヤドリ -->
+                <div class="glass-card rounded-2xl p-5 text-center group hover:border-amber-400 transition-all flex flex-col items-center justify-center">
+                    <span class="inline-block px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-[10px] font-bold border border-purple-500/30 mb-3">
+                        LEADER / リーダー
+                    </span>
+                    <h3 class="text-lg font-bold text-white tracking-wide">ヤドリ</h3>
+                    <p class="text-[11px] text-gray-400 font-montserrat mt-1">Yadori</p>
+                </div>
+
+                <!-- Host 3: にんじん -->
+                <div class="glass-card rounded-2xl p-5 text-center group hover:border-amber-400 transition-all flex flex-col items-center justify-center">
+                    <span class="inline-block px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold border border-emerald-500/30 mb-3">
+                        HOST / ホスト
+                    </span>
+                    <h3 class="text-lg font-bold text-white tracking-wide">にんじん</h3>
+                    <p class="text-[11px] text-gray-400 font-montserrat mt-1">Ninjin</p>
+                </div>
+
+                <!-- Host 4: NYO -->
+                <div class="glass-card rounded-2xl p-5 text-center group hover:border-amber-400 transition-all flex flex-col items-center justify-center">
+                    <span class="inline-block px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-bold border border-amber-500/30 mb-3">
+                        HOST / ホスト
+                    </span>
+                    <h3 class="text-lg font-bold text-white tracking-wide">NYO</h3>
+                    <p class="text-[11px] text-gray-400 font-montserrat mt-1">Nyo</p>
+                </div>
+
+                <!-- Host 5: ぽーらん -->
+                <div class="glass-card rounded-2xl p-5 text-center group hover:border-amber-400 transition-all flex flex-col items-center justify-center">
+                    <span class="inline-block px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-[10px] font-bold border border-blue-500/30 mb-3">
+                        HOST / ホスト
+                    </span>
+                    <h3 class="text-lg font-bold text-white tracking-wide">寝起きのぽーらん</h3>
+                    <p class="text-[11px] text-gray-400 font-montserrat mt-1">Poran</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: SYSTEM & TAX -->
+        <div id="section-system" class="hidden space-y-8 max-w-3xl mx-auto">
+            <div class="glass-card rounded-2xl p-8 border border-amber-500/30">
+                <h2 class="text-2xl font-cinzel text-amber-300 mb-2 border-b border-amber-500/20 pb-3 flex items-center justify-between">
+                    <span>SYSTEM & CHARGE</span>
+                    <span class="text-xs text-gray-400 font-normal">システム料金案内</span>
+                </h2>
+
+                <div class="space-y-6 my-6 text-sm">
+                    <div class="flex justify-between items-center border-b border-gray-800 pb-3">
+                        <div>
+                            <p class="font-bold text-white">First Visit / 初回料金 (90 min)</p>
+                            <p class="text-xs text-gray-400">鏡月・ソフトドリンク飲み放題</p>
+                        </div>
+                        <p class="text-amber-400 font-bold font-montserrat text-lg">¥3,000</p>
+                    </div>
+
+                    <div class="flex justify-between items-center border-b border-gray-800 pb-3">
+                        <div>
+                            <p class="font-bold text-white">Standard Charge / 基本セット料金 (1 Hour)</p>
+                            <p class="text-xs text-gray-400">1時間あたりのテーブルチャージ</p>
+                        </div>
+                        <p class="text-amber-400 font-bold font-montserrat text-lg">¥10,000</p>
+                    </div>
+
+                    <div class="flex justify-between items-center border-b border-gray-800 pb-3">
+                        <div>
+                            <p class="font-bold text-white">Nomination Fee / 指名料</p>
+                            <p class="text-xs text-gray-400">本指名 / 場内指名共通</p>
+                        </div>
+                        <p class="text-amber-400 font-bold font-montserrat text-lg">¥3,000</p>
+                    </div>
+
+                    <div class="flex justify-between items-center border-b border-gray-800 pb-3">
+                        <div>
+                            <p class="font-bold text-white">VIP Room Charge / VIPルーム使用料 (1 Hour)</p>
+                            <p class="text-xs text-gray-400">完全個室VIPルーム</p>
+                        </div>
+                        <p class="text-amber-400 font-bold font-montserrat text-lg">¥30,000</p>
+                    </div>
+
+                    <div class="bg-amber-500/10 rounded-xl p-4 border border-amber-500/20">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="font-bold text-amber-300">TAX & Service Charge / 税・サービス料</p>
+                                <p class="text-xs text-gray-400 mt-1">サービス料 35% + 消費税 10%（合計45%算定）</p>
+                            </div>
+                            <p class="text-xl font-bold font-montserrat text-amber-400">35% + 10%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ESTIMATOR / BASKET FLOATING PANEL -->
+        <div id="estimator-panel" class="fixed bottom-6 right-6 z-50 glass-card rounded-2xl p-4 border-2 border-amber-500/50 shadow-2xl max-w-sm w-full hidden">
+            <div class="flex justify-between items-center border-b border-gray-700 pb-2 mb-3">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-calculator text-amber-400"></i>
+                    <h4 class="font-bold text-sm text-white">ORDER ESTIMATOR / お見積もり</h4>
+                </div>
+                <button onclick="toggleEstimatorModal()" class="text-gray-400 hover:text-white text-xs">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div id="estimator-items" class="max-h-36 overflow-y-auto space-y-2 mb-3 text-xs pr-1">
+            </div>
+
+            <div class="border-t border-gray-800 pt-2 space-y-1 text-xs">
+                <div class="flex justify-between text-gray-400">
+                    <span>Subtotal / 小計:</span>
+                    <span id="subtotal-val" class="font-montserrat">¥0</span>
+                </div>
+                <div class="flex justify-between text-gray-400">
+                    <span>Tax & Service (45%):</span>
+                    <span id="tax-val" class="font-montserrat">¥0</span>
+                </div>
+                <div class="flex justify-between text-base font-bold text-amber-300 pt-1 border-t border-gray-800">
+                    <span>TOTAL / 合計金額:</span>
+                    <span id="total-val" class="font-montserrat text-lg">¥0</span>
+                </div>
+            </div>
+
+            <div class="order-btn-container mt-3">
+                <button onclick="confirmOrder()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-700 text-black font-bold text-xs tracking-wider shadow-lg hover:brightness-110 transition-all">
+                    CONFIRM ORDER / 注文を確定する
+                </button>
+            </div>
+        </div>
+
+        <!-- Floating Cart Trigger Button -->
+        <button id="cart-trigger" onclick="toggleEstimatorModal()" class="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-amber-500 to-amber-700 text-black p-4 rounded-full shadow-2xl border border-amber-300 flex items-center space-x-2 font-bold text-xs">
+            <i class="fa-solid fa-receipt text-base"></i>
+            <span id="cart-count" class="bg-black text-amber-400 rounded-full px-2 py-0.5 text-[10px]">0</span>
+        </button>
+
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        let orderList = [];
+
+        function switchTab(tabName) {
+            document.getElementById('section-menu').classList.add('hidden');
+            document.getElementById('section-cast').classList.add('hidden');
+            document.getElementById('section-system').classList.add('hidden');
+
+            document.getElementById('tab-menu').classList.remove('active');
+            document.getElementById('tab-cast').classList.remove('active');
+            document.getElementById('tab-system').classList.remove('active');
+
+            document.getElementById(`section-${tabName}`).classList.remove('hidden');
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+        }
+
+        function toggleOrderButton() {
+            const isChecked = document.getElementById('order-toggle').checked;
+            const containers = document.querySelectorAll('.order-btn-container');
+            containers.forEach(el => {
+                if (isChecked) {
+                    el.classList.remove('hidden');
+                } else {
+                    el.classList.add('hidden');
+                }
+            });
+        }
+
+        function addToEstimator(name, price) {
+            orderList.push({ name, price });
+            updateEstimatorUI();
+            
+            const panel = document.getElementById('estimator-panel');
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+                document.getElementById('cart-trigger').classList.add('hidden');
+            }
+        }
+
+        function removeFromEstimator(index) {
+            orderList.splice(index, 1);
+            updateEstimatorUI();
+        }
+
+        function updateEstimatorUI() {
+            const itemsContainer = document.getElementById('estimator-items');
+            itemsContainer.innerHTML = '';
+
+            let subtotal = 0;
+
+            if (orderList.length === 0) {
+                itemsContainer.innerHTML = `<p class="text-gray-500 text-center py-2">No items selected / 選択されていません</p>`;
+            } else {
+                orderList.forEach((item, index) => {
+                    subtotal += item.price;
+                    itemsContainer.innerHTML += `
+                        <div class="flex justify-between items-center bg-black/40 p-2 rounded-lg border border-gray-800">
+                            <span class="truncate max-w-[160px] text-gray-200">${item.name}</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="font-montserrat text-amber-400">¥${item.price.toLocaleString()}</span>
+                                <button onclick="removeFromEstimator(${index})" class="text-red-400 hover:text-red-300">
+                                    <i class="fa-solid fa-minus-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            const taxAndService = Math.round(subtotal * 0.45);
+            const total = subtotal + taxAndService;
+
+            document.getElementById('subtotal-val').innerText = `¥${subtotal.toLocaleString()}`;
+            document.getElementById('tax-val').innerText = `¥${taxAndService.toLocaleString()}`;
+            document.getElementById('total-val').innerText = `¥${total.toLocaleString()}`;
+            document.getElementById('cart-count').innerText = orderList.length;
+        }
+
+        function toggleEstimatorModal() {
+            const panel = document.getElementById('estimator-panel');
+            const trigger = document.getElementById('cart-trigger');
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+                trigger.classList.add('hidden');
+            } else {
+                panel.classList.add('hidden');
+                trigger.classList.remove('hidden');
+            }
+        }
+
+        function confirmOrder() {
+            if (orderList.length === 0) {
+                alert('メニューを選択してください。');
+                return;
+            }
+            alert('ご注文ありがとうございます。担当キャスト・スタッフが伺います。');
+            orderList = [];
+            updateEstimatorUI();
+            toggleEstimatorModal();
+        }
+
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedY = -Math.random() * 0.5 - 0.2;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.y += this.speedY;
+                if (this.y < 0) {
+                    this.y = canvas.height;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 50; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+    </script>
+</body>
+</html>
